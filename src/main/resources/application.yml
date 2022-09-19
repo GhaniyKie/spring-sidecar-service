@@ -1,0 +1,16 @@
+server:
+  port: ${sidecar-port:9090}
+  max-http-header-size: 10000000
+
+spring:
+  application:
+    name: ${side-app-name:sidecar-service}
+
+sidecar:
+  port: ${app-port:3000}
+  health-uri: http://localhost:${sidecar.port}/${health-uri:health.json}
+  home-page-uri: http://localhost:${sidecar.port}/
+
+ribbon:
+  eureka:
+    enabled: true
